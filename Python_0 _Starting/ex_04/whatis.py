@@ -1,14 +1,38 @@
 
 import sys
+
+
+def check_number(number) -> str:
+    """
+    Returns the result of check.
+    """
+    try:
+        number = int(number)
+    except ValueError:
+        print("AssertionError: argument is not an integer")
+        exit(1)
+    if (number % 2 != 0):
+        return ("I'm Odd.")
+    else:
+        return ("I'm Even.")
+
+
 def main(*args):
-    if len(*args) != 1:
-        print ("AssertionError: more than one argument is provided")
-        return 1
-    elif args[0].isdigit() == False:
-        #(args[0][0] != '-' & args[0][1:].isdigit() == False):
-        print ("AssertionError: argument is not an integer")
-        print (args[0][0])
-        return 1
+    """
+    Main function
+    """
+    try:
+        if len(args) > 1:
+            raise AssertionError("AssertionError: more than one argument is provided")
+        elif len(args) == 0:
+            return 1
+    except AssertionError as e:
+        print(e)
+        return 1 
+          
+    print(check_number(args[0]))
+    #print (main.__doc__)
+    #print (check_number.__doc__)
 
 
 if __name__ == "__main__":
